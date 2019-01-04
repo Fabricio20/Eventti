@@ -24,6 +24,7 @@ public class EventManager {
     /* ------------------------------------------------ */
 
     public void addListener(Listener listener) {
+        if (listener == null) return;
         this.listeners.add(listener);
     }
 
@@ -42,7 +43,7 @@ public class EventManager {
             for (Method method : clazz.getDeclaredMethods()) {
                 if (!method.isAnnotationPresent(EventHandler.class)) continue;
                 if (method.getParameterCount() != 1) continue;
-                if (event.getClass().isAssignableFrom(method.getParameterTypes()[0])) continue;
+                if (!event.getClass().isAssignableFrom(method.getParameterTypes()[0])) continue;
 
                 EventHandler eventHandler = method.getDeclaredAnnotation(EventHandler.class);
                 tuples.add(new EventTuple(method, eventHandler, listener));
