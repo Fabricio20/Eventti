@@ -5,7 +5,6 @@ import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.concurrent.CopyOnWriteArraySet;
@@ -24,19 +23,45 @@ public class EventManager {
 
     /* ------------------------------------------------ */
 
+    /**
+     * Registers a listener for incoming events.
+     *
+     * @param listener The listener to add.
+     */
     public void addListener(Listener listener) {
         if (listener == null) return;
         this.listeners.add(listener);
     }
 
+    /**
+     * Removes a previously registered listener.
+     *
+     * @param listener The listener to remove.
+     */
     public void remListener(Listener listener) {
         this.listeners.remove(listener);
     }
 
+    /**
+     * Asynchronously fires an event, this will trigger all registered listeners
+     * that have methods annotated with {@link EventHandler} that
+     * contain a single parameter of the same type as the event
+     * parameter, respecting their priority.
+     *
+     * @param event The event to fire.
+     */
     public void fire(Event event) {
         this.executorService.submit(() -> fireSync(event));
     }
 
+    /**
+     * Fires an event, this will trigger all registered listeners
+     * that have methods annotated with {@link EventHandler} that
+     * contain a single parameter of the same type as the event
+     * parameter, respecting their priority.
+     *
+     * @param event The event to fire.
+     */
     public void fireSync(Event event) {
         Set<EventTuple> tuples = new TreeSet<>();
         for (Listener listener : this.listeners) {
