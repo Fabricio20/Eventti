@@ -8,11 +8,14 @@ import java.lang.reflect.Method;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class EventManager {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     private final Set<Listener> listeners = new HashSet<>();
+    private final ExecutorService executorService = Executors.newCachedThreadPool();
 
     public void onDisable() {
         this.listeners.clear();
@@ -29,6 +32,10 @@ public class EventManager {
     }
 
     public void fire(Event event) {
+        this.executorService.submit(() -> fireSync(event));
+    }
+
+    public void fireSync(Event event) {
         Set<EventTuple> tuples = new TreeSet<>();
         for (Listener listener : this.listeners) {
             Class clazz = listener.getClass();
