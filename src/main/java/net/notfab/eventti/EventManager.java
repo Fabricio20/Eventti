@@ -8,13 +8,14 @@ import java.lang.reflect.Method;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class EventManager {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
-    private final Set<Listener> listeners = new HashSet<>();
+    private final Set<Listener> listeners = new CopyOnWriteArraySet<>();
     private final ExecutorService executorService = Executors.newCachedThreadPool();
 
     public void onDisable() {
