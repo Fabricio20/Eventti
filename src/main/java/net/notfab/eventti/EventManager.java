@@ -3,6 +3,7 @@ package net.notfab.eventti;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.Closeable;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Set;
@@ -11,17 +12,11 @@ import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class EventManager {
+public class EventManager implements Closeable, AutoCloseable {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     private final Set<Listener> listeners = new CopyOnWriteArraySet<>();
     private final ExecutorService executorService = Executors.newCachedThreadPool();
-
-    public void onDisable() {
-        this.listeners.clear();
-    }
-
-    /* ------------------------------------------------ */
 
     /**
      * Registers a listener for incoming events.
@@ -90,6 +85,16 @@ public class EventManager {
                 logger.error("Error firing event", ex);
             }
         }
+    }
+
+    /**
+     * Closes this EventManager. This destroys the underlying ExecutorService
+     * and removes all listeners.
+     */
+    @Override
+    public void close() {
+        this.listeners.clear();
+        this.executorService.shutdown();
     }
 
 }
