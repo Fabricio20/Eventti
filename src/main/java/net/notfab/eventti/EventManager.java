@@ -81,7 +81,7 @@ public class EventManager implements Closeable, AutoCloseable {
             }
             try {
                 method.invoke(listener, event);
-            } catch (IllegalAccessException | InvocationTargetException ex) {
+            } catch (Exception ex) {
                 logger.error("Error firing event", ex);
             }
         }
