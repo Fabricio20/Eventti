@@ -1,5 +1,7 @@
 package net.notfab.eventti;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -58,7 +60,7 @@ public class EventManager implements Closeable, AutoCloseable {
      * @param event The event to fire.
      */
     public void fireSync(Event event) {
-        Set<EventTuple> tuples = new TreeSet<>();
+        List<EventTuple> tuples = new ArrayList<>();
         for (Listener listener : this.listeners) {
             Class clazz = listener.getClass();
             for (Method method : clazz.getDeclaredMethods()) {
