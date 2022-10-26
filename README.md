@@ -1,4 +1,4 @@
-# Eventti [![Build Status](https://travis-ci.com/Fabricio20/Eventti.svg?branch=master)](https://travis-ci.com/Fabricio20/Eventti)
+# Eventti ![Build Status](https://github.com/Fabricio20/Eventti/actions/workflows/build.yml/badge.svg)
 **Eventti** is a simple Java event framework which allows users to fire events and have listeners act upon them.
 
 **Features**:
@@ -9,36 +9,38 @@
 <li>Threadsafe</li>
 </ul>
 
-Check versions here: https://maven.notfab.net/Hosted/net/notfab/Eventti/
-
 ### Installation
 
 **Note**: Eventti uses SLF4J as a logging framework.
 
 Maven:
+
 ```xml
+
 <repositories>
     <repository>
-        <id>NotFab</id>
-        <url>https://maven.notfab.net/Hosted</url>
+        <id>Eventti</id>
+        <url>https://maven.pkg.github.com/Fabricio20/Eventti</url>
     </repository>
 </repositories>
 ```
+
 ```xml
+
 <dependency>
     <groupId>net.notfab</groupId>
     <artifactId>Eventti</artifactId>
-    <version>1.3.4</version>
+    <version>1.3.8</version>
 </dependency>
 ```
 Gradle:
 ```bash
 repositories {
-    maven { url "https://maven.notfab.net/Hosted" }
+    maven { url "https://maven.pkg.github.com/Fabricio20/Eventti" }
 }
 ```
 ```bash
-compile group: 'net.notfab', name: 'Eventti', version: '1.3.4'
+compile group: 'net.notfab', name: 'Eventti', version: '1.3.8'
 ```
 
 ### Usage
