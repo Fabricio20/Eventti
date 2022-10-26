@@ -29,7 +29,7 @@ Maven:
 
 <dependency>
     <groupId>net.notfab</groupId>
-    <artifactId>Eventti</artifactId>
+    <artifactId>eventti</artifactId>
     <version>1.3.8</version>
 </dependency>
 ```
@@ -40,7 +40,7 @@ repositories {
 }
 ```
 ```bash
-compile group: 'net.notfab', name: 'Eventti', version: '1.3.8'
+compile group: 'net.notfab', name: 'eventti', version: '1.3.8'
 ```
 
 ### Usage

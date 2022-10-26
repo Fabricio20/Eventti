@@ -4,9 +4,6 @@ on:
     tags:
       - '*'
   workflow_dispatch:
-    inputs:
-      tags:
-        description: 'Re-release tag'
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -32,4 +29,5 @@ jobs:
       - name: Build with gradle
         run: ./gradlew publish
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          USERNAME: ${{ github.actor }}
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
