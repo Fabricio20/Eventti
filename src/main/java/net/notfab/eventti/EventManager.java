@@ -6,10 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.Closeable;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Set;
-import java.util.TreeSet;
 import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -62,7 +60,7 @@ public class EventManager implements Closeable, AutoCloseable {
     public void fireSync(Event event) {
         List<EventTuple> tuples = new ArrayList<>();
         for (Listener listener : this.listeners) {
-            Class clazz = listener.getClass();
+            Class<? extends Listener> clazz = listener.getClass();
             for (Method method : clazz.getDeclaredMethods()) {
                 if (!method.isAnnotationPresent(EventHandler.class)) continue;
                 if (method.getParameterCount() != 1) continue;

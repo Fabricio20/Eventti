@@ -1,0 +1,32 @@
+name: Release
+on:
+  push:
+    tags:
+      - '*'
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: 17
+      - name: Fetch version
+        run: |
+          # Strip git ref prefix from version
+          VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+          
+          # Strip "v" prefix from tag name
+          [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
+          
+          echo VERSION=$VERSION
+          echo "RELEASE=$VERSION" >> $GITHUB_ENV
+      - name: Setup gradle
+        uses: gradle/gradle-build-action@v2
+      - name: Build with gradle
+        run: ./gradlew publish
+        env:
+          USERNAME: ${{ github.actor }}
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}

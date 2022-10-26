@@ -2,8 +2,8 @@ package net.notfab.eventti;
 
 public class ExampleListener implements Listener {
 
-    private Runnable onNormal;
-    private Runnable onHigh;
+    private final Runnable onNormal;
+    private final Runnable onHigh;
 
     protected ExampleListener(Runnable onNormal, Runnable onHigh) {
         this.onNormal = onNormal;

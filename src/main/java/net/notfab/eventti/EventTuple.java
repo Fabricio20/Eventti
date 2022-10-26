@@ -2,11 +2,11 @@ package net.notfab.eventti;
 
 import java.lang.reflect.Method;
 
-class EventTuple implements Comparable {
+class EventTuple implements Comparable<EventTuple> {
 
-    private Method method;
-    private EventHandler handler;
-    private Listener listener;
+    private final Method method;
+    private final EventHandler handler;
+    private final Listener listener;
 
     EventTuple(Method method, EventHandler handler, Listener listener) {
         this.method = method;
@@ -27,11 +27,8 @@ class EventTuple implements Comparable {
     }
 
     @Override
-    public int compareTo(Object o) {
-        if (!(o instanceof EventTuple)) return -1;
-        EventTuple eventTuple = (EventTuple) o;
-        return Integer.compare(eventTuple.getHandler().priority()
-                .getWeight(), this.getHandler().priority().getWeight());
+    public int compareTo(EventTuple tuple) {
+        return Integer.compare(tuple.getHandler().priority().getWeight(), this.getHandler().priority().getWeight());
     }
 
 }
