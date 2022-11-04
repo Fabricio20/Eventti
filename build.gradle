@@ -111,7 +111,7 @@ publishing {
 String getSigningKey() {
     def signingKey
     def file = project.findProperty("singing.secretKeyFile")
-    if (new File(file).exists()) {
+    if (file != null && new File(file).exists()) {
         signingKey = new String(Files.readAllBytes(new File(file).toPath()))
     } else {
         signingKey = project.findProperty("signing.key") ?: System.getenv("GPG_KEY")
