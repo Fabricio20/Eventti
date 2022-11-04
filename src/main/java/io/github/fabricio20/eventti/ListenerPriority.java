@@ -1,4 +1,4 @@
-package net.notfab.eventti;
+package io.github.fabricio20.eventti;
 
 public enum ListenerPriority {
 

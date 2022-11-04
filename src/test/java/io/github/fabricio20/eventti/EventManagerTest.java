@@ -1,4 +1,4 @@
-package net.notfab.eventti;
+package io.github.fabricio20.eventti;
 
 import org.junit.jupiter.api.Test;
 

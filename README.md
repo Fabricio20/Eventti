@@ -17,30 +17,15 @@ Maven:
 
 ```xml
 
-<repositories>
-    <repository>
-        <id>Eventti</id>
-        <url>https://maven.pkg.github.com/Fabricio20/Eventti</url>
-    </repository>
-</repositories>
-```
-
-```xml
-
 <dependency>
-    <groupId>net.notfab</groupId>
+    <groupId>io.github.fabricio20</groupId>
     <artifactId>eventti</artifactId>
-    <version>1.3.8</version>
+    <version>1.3.9</version>
 </dependency>
 ```
 Gradle:
 ```bash
-repositories {
-    maven { url "https://maven.pkg.github.com/Fabricio20/Eventti" }
-}
-```
-```bash
-compile group: 'net.notfab', name: 'eventti', version: '1.3.8'
+implementation 'io.github.fabricio20:eventti:1.3.9'
 ```
 
 ### Usage

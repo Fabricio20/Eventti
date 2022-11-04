@@ -1,4 +1,4 @@
-package net.notfab.eventti;
+package io.github.fabricio20.eventti;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
