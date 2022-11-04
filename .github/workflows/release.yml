@@ -26,17 +26,12 @@ jobs:
           echo "RELEASE=$VERSION" >> $GITHUB_ENV
       - name: Setup gradle
         uses: gradle/gradle-build-action@v2
-      - name: Publish to Sonatype
-        run: ./gradlew publishToSonatype --no-daemon
-        env:
-          GPG_KEY: ${{ secrets.GPG_KEY }}
-          GPG_PASSWORD: ${{ secrets.GPG_PASSWORD }}
-          SONATYPE_USER: ${{ secrets.SONATYPE_USER }}
-          SONATYPE_PASS: ${{ secrets.SONATYPE_PASS }}
-      - name: Publish to GitHub
+      - name: Maven publish
         run: ./gradlew publish --no-daemon
         env:
           GPG_KEY: ${{ secrets.GPG_KEY }}
           GPG_PASSWORD: ${{ secrets.GPG_PASSWORD }}
           GITHUB_USER: ${{ github.actor }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONATYPE_USER: ${{ secrets.SONATYPE_USER }}
+          SONATYPE_PASS: ${{ secrets.SONATYPE_PASS }}
