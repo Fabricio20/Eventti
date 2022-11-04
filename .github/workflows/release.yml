@@ -36,5 +36,7 @@ jobs:
       - name: Publish to GitHub
         run: ./gradlew publish --no-daemon
         env:
+          GPG_KEY: ${{ secrets.GPG_KEY }}
+          GPG_PASSWORD: ${{ secrets.GPG_PASSWORD }}
           GITHUB_USER: ${{ github.actor }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
