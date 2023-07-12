@@ -6,7 +6,7 @@
 <li>Async event firing (by default!)</li>
 <li>Cancellable events</li>
 <li>Event listener priority</li>
-<li>Threadsafe</li>
+<li>Thread Safe</li>
 </ul>
 
 ### Installation
@@ -20,26 +20,26 @@ Maven:
 <dependency>
     <groupId>io.github.fabricio20</groupId>
     <artifactId>eventti</artifactId>
-    <version>1.3.9</version>
+    <version>1.4.0</version>
 </dependency>
 ```
 Gradle:
 ```bash
-implementation 'io.github.fabricio20:eventti:1.3.9'
+implementation 'io.github.fabricio20:eventti:1.4.0'
 ```
 
 ### Usage
 
-**1** - To create an event, simply create a class that extends Event, feel free to add any methods or parameters you may need.
+**1** - An Event can be any class with any signature, feel free to add any methods or parameters you may need.
 
 Normal event:
 ```java
-public class ExampleEvent extends Event {}
+public class ExampleEvent {}
 ```
 
 Cancellable event:
 ```java
-public class ExampleEvent extends Event implements Cancellable {
+public class ExampleEvent implements Cancellable {
     
     private boolean cancelled = false;
     

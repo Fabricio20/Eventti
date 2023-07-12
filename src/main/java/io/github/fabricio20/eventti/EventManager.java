@@ -1,12 +1,12 @@
 package io.github.fabricio20.eventti;
 
-import java.util.ArrayList;
-import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.Closeable;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.concurrent.ExecutorService;
@@ -45,7 +45,7 @@ public class EventManager implements Closeable, AutoCloseable {
      *
      * @param event The event to fire.
      */
-    public void fire(Event event) {
+    public void fire(Object event) {
         this.executorService.submit(() -> fireSync(event));
     }
 
@@ -57,7 +57,7 @@ public class EventManager implements Closeable, AutoCloseable {
      *
      * @param event The event to fire.
      */
-    public void fireSync(Event event) {
+    public void fireSync(Object event) {
         List<EventTuple> tuples = new ArrayList<>();
         for (Listener listener : this.listeners) {
             Class<? extends Listener> clazz = listener.getClass();

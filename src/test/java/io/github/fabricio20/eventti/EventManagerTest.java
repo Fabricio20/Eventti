@@ -54,7 +54,7 @@ public class EventManagerTest {
         try (EventManager eventManager = new EventManager()) {
             AtomicBoolean wasFired = new AtomicBoolean(false);
 
-            Event event = new ExampleEvent();
+            ExampleEvent event = new ExampleEvent();
             Listener listener = new ExampleListener(() -> wasFired.set(true), () -> {
             });
 
@@ -70,7 +70,7 @@ public class EventManagerTest {
             AtomicLong normalFire = new AtomicLong();
             AtomicLong highFire = new AtomicLong();
 
-            Event event = new ExampleEvent();
+            ExampleEvent event = new ExampleEvent();
             Listener listener = new ExampleListener(
                     () -> normalFire.set(System.nanoTime()),
                     () -> highFire.set(System.nanoTime()));

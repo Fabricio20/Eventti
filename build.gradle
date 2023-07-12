@@ -8,7 +8,7 @@ plugins {
 }
 
 group 'io.github.fabricio20'
-version '1.3.9'
+version '1.4.0'
 description 'A Java event framework'
 
 sourceCompatibility = targetCompatibility = 8
